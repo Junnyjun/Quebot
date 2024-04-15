@@ -14,15 +14,19 @@
 
 ## Structure
 1. Core server
+
 core server는 질문과 답변을 처리합니다.
 
 2. Data server
+
 data server는 질문과 답변을 저장하고 불러옵니다.
 
 3. Trained server
+   
 trained server는 질문과 답변의 정답유사율을 계산합니다.
 
 4. User server
+
 user server는 사용자의 정보를 저장하고 불러옵니다.
 
 ## Dataset
