@@ -25,7 +25,6 @@ func loadConfig(cfg *Config, env string) {
 	log.Println("[Configuration] ENV : ", env)
 	if env == "" {
 		log.Panic("ENV is not set")
-		panic(`ENV is not set`)
 	}
 
 	viper.SetConfigName("config-" + env)
