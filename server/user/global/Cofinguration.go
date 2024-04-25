@@ -3,7 +3,6 @@ package global
 import (
 	"github.com/spf13/viper"
 	"log"
-	"os"
 	"sync"
 )
 
@@ -14,22 +13,21 @@ type Config struct {
 	jwtKey string
 }
 
-func GetInstance() *Config {
+func GetInstance(env string) *Config {
 	once.Do(func() {
 		instance = &Config{}
-		loadConfig(instance)
+		loadConfig(instance, env)
 	})
 	return instance
 }
 
-func loadConfig(cfg *Config) {
-	environment := os.Getenv("ENV")
-	log.Println("[Configuration] ENV : ", environment)
-	if environment == "" {
+func loadConfig(cfg *Config, env string) {
+	log.Println("[Configuration] ENV : ", env)
+	if env == "" {
 		log.Panic("ENV is not set")
 		panic(`ENV is not set`)
 	}
-	viper.SetConfigName("config-" + environment)
+	viper.SetConfigName("config-" + env)
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
 
