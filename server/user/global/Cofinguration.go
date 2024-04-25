@@ -6,13 +6,12 @@ import (
 	"sync"
 )
 
-type Config struct {
-	ServerAddress string
-	LogLevel      string
-}
-
 var instance *Config
 var once sync.Once
+
+type Config struct {
+	jwtKey string
+}
 
 func GetInstance(environment string) *Config {
 	once.Do(func() {
@@ -31,6 +30,9 @@ func loadConfig(cfg *Config, environment string) {
 		log.Fatalf("Error reading config file, %s", err)
 	}
 
-	cfg.ServerAddress = viper.GetString("server.address")
-	cfg.LogLevel = viper.GetString("log.level")
+	cfg.jwtKey = viper.GetString("jwt.key")
+}
+
+func (c *Config) SetJwtKey() string {
+	return c.jwtKey
 }
