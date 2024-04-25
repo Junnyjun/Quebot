@@ -16,10 +16,10 @@ func TestGetInstance(t *testing.T) {
 	env := "test"
 
 	config := GetInstance(env)
-	assert.Equal(t, config.jwtKey, "secret", "jwtKey does not match")
+	assert.Equal(t, config.JwtKey(), "secret", "jwtKey does not match")
 
 	singleTone := GetInstance(env)
-	assert.Equal(t, config, singleTone, "GetInstance should return the same instance")
+	assert.Equal(t, &config, &singleTone, "GetInstance should return the same instance")
 }
 
 func TestLoadConfigNoEnv(t *testing.T) {
