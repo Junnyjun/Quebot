@@ -2,10 +2,17 @@ package global
 
 import (
 	"github.com/magiconair/properties/assert"
+	"sync"
 	"testing"
 )
 
+func clear() {
+	instance = nil
+	once = sync.Once{}
+}
+
 func TestGetInstance(t *testing.T) {
+	clear()
 	env := "test"
 
 	config := GetInstance(env)
@@ -16,6 +23,7 @@ func TestGetInstance(t *testing.T) {
 }
 
 func TestLoadConfigNoEnv(t *testing.T) {
+	clear()
 	env := ""
 
 	assert.Panic(t, func() {
