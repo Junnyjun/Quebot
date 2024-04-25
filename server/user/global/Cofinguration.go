@@ -27,6 +27,7 @@ func loadConfig(cfg *Config, env string) {
 		log.Panic("ENV is not set")
 		panic(`ENV is not set`)
 	}
+
 	viper.SetConfigName("config-" + env)
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
