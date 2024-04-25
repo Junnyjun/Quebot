@@ -24,11 +24,11 @@ func GetInstance() *Config {
 
 func loadConfig(cfg *Config) {
 	environment := os.Getenv("ENV")
+	log.Println("[Configuration] ENV : ", environment)
 	if environment == "" {
 		log.Panic("ENV is not set")
 		panic(`ENV is not set`)
 	}
-
 	viper.SetConfigName("config-" + environment)
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
@@ -36,7 +36,7 @@ func loadConfig(cfg *Config) {
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Error reading config file, %s", err)
 	}
-
+	log.Println("[Configuration] Config file loaded : ", viper.ConfigFileUsed())
 	cfg.jwtKey = viper.GetString("jwt.key")
 }
 
