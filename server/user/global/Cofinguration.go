@@ -31,6 +31,7 @@ func loadConfig(cfg *Config, env string) {
 
 	viper.SetConfigName("config-" + env)
 	viper.SetConfigType("yaml")
+	// project root directory
 	viper.AddConfigPath(".")
 
 	if err := viper.ReadInConfig(); err != nil {

@@ -30,7 +30,7 @@ func (tp *TokenProviderUsecase) GenerateToken(token domain.Token) string {
 
 	signedToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(tp.config.JwtKey()))
 	if err != nil {
-		log.Fatal("Failed to generate token")
+		log.Fatalln("Failed to generate token")
 	}
 	return signedToken
 }
