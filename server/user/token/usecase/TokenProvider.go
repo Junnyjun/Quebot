@@ -36,6 +36,12 @@ func (tp *TokenProviderUsecase) GenerateToken(token domain.Token) string {
 }
 
 func (tp *TokenProviderUsecase) ValidateToken(token string) bool {
-
-	return true // 임시 반환값
+	_, err := jwt.Parse(token, func(token *jwt.Token) (any, error) {
+		return []byte(tp.config.JwtKey()), nil
+	})
+	if err != nil {
+		log.Println("Token is not valid")
+		return false
+	}
+	return true
 }

@@ -14,6 +14,8 @@ var once sync.Once
 type Config struct {
 	jwtKey    string
 	expiresAt string
+
+	port string
 }
 
 func GetInstance(env string) *Config {
@@ -30,11 +32,19 @@ func loadConfig(cfg *Config, env string) {
 		log.Panic("ENV is not set")
 	}
 
-	godotenv.Load(".env." + env)
+	err := godotenv.Load(".env." + env)
+	if err != nil {
+		log.Fatalf("Error loading .env file: %s", err)
+	}
 
 	cfg.jwtKey = os.Getenv("JWT_KEY")
-	cfg.expiresAt = os.Getenv("EXPIRES_AT")
+	log.Println("[Configuration] JWT_KEY : " + cfg.JwtKey())
 
+	cfg.expiresAt = os.Getenv("EXPIRES_AT")
+	log.Println("[Configuration] EXPIRES_AT : " + cfg.expiresAt)
+
+	cfg.port = os.Getenv("PORT")
+	log.Println("[Configuration] PORT : " + cfg.Port())
 }
 
 func (c *Config) JwtKey() string {
@@ -49,4 +59,8 @@ func (c *Config) ExpiresAt() time.Time {
 		return time.Time{}
 	}
 	return time.Now().Add(duration).UTC()
+}
+
+func (c *Config) Port() string {
+	return "127.0.0.1:" + c.port
 }

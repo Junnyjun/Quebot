@@ -1,11 +1,17 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"myproject/global"
 )
 
 const env = "dev"
 
 func main() {
-	_ = global.GetInstance(env)
+	config := global.GetInstance(env)
+
+	engine := gin.Default()
+
+	engine.Run(config.Port())
+
 }
