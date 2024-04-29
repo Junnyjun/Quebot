@@ -36,6 +36,6 @@ func (tp *TokenProviderUsecase) GenerateToken(token domain.Token) string {
 }
 
 func (tp *TokenProviderUsecase) ValidateToken(token string) bool {
-	// 토큰 검증 로직 구현
+
 	return true // 임시 반환값
 }

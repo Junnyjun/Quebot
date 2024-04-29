@@ -1,3 +1,0 @@
-jwt:
-  key: "secret"
-  expiration: 3600

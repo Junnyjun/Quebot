@@ -1,8 +1,9 @@
 package global
 
 import (
-	"github.com/spf13/viper"
+	"github.com/joho/godotenv"
 	"log"
+	"os"
 	"sync"
 	"time"
 )
@@ -29,17 +30,11 @@ func loadConfig(cfg *Config, env string) {
 		log.Panic("ENV is not set")
 	}
 
-	viper.SetConfigName("config-" + env)
-	viper.SetConfigType("yaml")
-	// project root directory
-	viper.AddConfigPath(".")
+	godotenv.Load(".env." + env)
 
-	if err := viper.ReadInConfig(); err != nil {
-		log.Fatalf("Error reading config file, %s", err)
-	}
-	log.Println("[Configuration] Config file loaded : ", viper.ConfigFileUsed())
-	cfg.jwtKey = viper.GetString("jwt.key")
-	cfg.expiresAt = viper.GetString("jwt.expiresAt")
+	cfg.jwtKey = os.Getenv("JWT_KEY")
+	cfg.expiresAt = os.Getenv("EXPIRES_AT")
+
 }
 
 func (c *Config) JwtKey() string {
