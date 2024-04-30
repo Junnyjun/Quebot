@@ -3,8 +3,8 @@ package usecase
 import (
 	"github.com/dgrijalva/jwt-go"
 	"log"
-	"myproject/global"
-	"myproject/token/domain"
+	"myproject/main/global"
+	"myproject/main/token/domain"
 	"time"
 )
 

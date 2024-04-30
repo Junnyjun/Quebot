@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"myproject/global"
+	"myproject/main/global"
 )
 
 const env = "dev"

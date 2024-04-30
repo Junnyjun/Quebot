@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"myproject/global"
-	"myproject/token/domain"
+	"myproject/main/global"
+	"myproject/main/token/domain"
 	"testing"
 )
 
@@ -23,4 +23,3 @@ func TestTokenProviderUsecase_ValidateToken(t *testing.T) {
 	if !tokenProvider.ValidateToken(token) {
 		t.Errorf("Token is not valid")
 	}
-}
