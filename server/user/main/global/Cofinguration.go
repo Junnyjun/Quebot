@@ -1,7 +1,6 @@
 package global
 
 import (
-	"github.com/joho/godotenv"
 	"log"
 	"os"
 	"sync"
@@ -30,11 +29,6 @@ func loadConfig(cfg *Config, env string) {
 	log.Println("[Configuration] ENV : ", env)
 	if env == "" {
 		log.Panic("ENV is not set")
-	}
-
-	err := godotenv.Load(".env." + env)
-	if err != nil {
-		log.Fatalf("Error loading .env file: %s", err)
 	}
 
 	cfg.jwtKey = os.Getenv("JWT_KEY")

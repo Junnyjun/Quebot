@@ -12,6 +12,7 @@ func clear() {
 }
 
 func TestGetInstance(t *testing.T) {
+
 	clear()
 	env := "test"
 

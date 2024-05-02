@@ -23,3 +23,4 @@ func TestTokenProviderUsecase_ValidateToken(t *testing.T) {
 	if !tokenProvider.ValidateToken(token) {
 		t.Errorf("Token is not valid")
 	}
+}
